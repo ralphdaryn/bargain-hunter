@@ -8,48 +8,44 @@ const PORT = process.env.PORT || 5050;
 // Middleware
 app.use(cors());
 
-// Username / Password
+// Authorization
 const username = "bargainhunter";
 const password = "BargainHunter06";
 
 // Routes
-app.get("/deals", async (req, res) => {
-  try {
-    const body = {
-      source: "amazon_search",
-      query: "deals today",
-      parse: true,
-      pages: 1,
-    };
+app.get("/deals", (req, res) => {
+  const body = {
+    source: "amazon_search",
+    query: "deals today",
+    parse: true,
+    pages: 1,
+  };
 
-    const response = await axios.post(
-      "https://realtime.oxylabs.io/v1/queries",
-      body,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Basic " +
-            Buffer.from(`${username}:${password}`).toString("base64"),
-        },
-      }
-    );
+  axios
+    .post("https://realtime.oxylabs.io/v1/queries", body, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Basic " + Buffer.from(`${username}:${password}`).toString("base64"),
+      },
+    })
+    .then((response) => {
+      const results = response.data.results[0].content.results.organic;
 
-    const results = response.data.results[0].content.results.organic;
+      const filterDeals = results.filter((deal) => deal.price_strikethrough);
 
-    const filterDeals = results.filter((deal) => deal.price_strikethrough);
+      const sortDeal = filterDeals.sort(
+        (b, a) =>
+          ((a.price_strikethrough - a.price) / a.price_strikethrough) * 100 -
+          ((b.price_strikethrough - b.price) / b.price_strikethrough) * 100
+      );
 
-    const sortDeal = filterDeals.sort(
-      (b, a) =>
-        ((a.price_strikethrough - a.price) / a.price_strikethrough) * 100 -
-        ((b.price_strikethrough - b.price) / b.price_strikethrough) * 100
-    );
-
-    res.json(sortDeal);
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
+      res.json(sortDeal);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: "Internal Server Error" });
+    });
 });
 
 app.listen(PORT, () => {

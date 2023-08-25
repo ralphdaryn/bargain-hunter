@@ -4,27 +4,30 @@ import Header from "./components/Header/Header";
 import Card from "./components/Card/Card";
 
 const App = () => {
+
   const [deals, setDeals] = useState([]);
-  const getDeals = async () => {
-    try {
-      const response = await axios.get("http://localhost:5050/deals");
-      setDeals(response.data);
-    } catch (err) {
-      console.log(err);
-    }
+
+  const getDeals = () => {
+    axios
+      .get("http://localhost:5050/deals")
+      .then((response) => {
+        setDeals(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
     getDeals();
   }, []);
 
-  console.log(deals);
-
   return (
     <div className="app">
       <Header />
       <div>
-        <h2>Best Bargain!</h2>
+        <h2>Top Bargains Today!</h2>
         <div className="feed">
           {deals.map((deal) => (
             <Card key={deal.pos} item={deal} />
