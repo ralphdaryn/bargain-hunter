@@ -1,0 +1,39 @@
+.card {
+  background-color: #d6dfe8;
+  &__image {
+    width: 80%;
+    border-radius: 15px;
+    &-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      border: 8px solid black;
+    }
+  }
+  &__link {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

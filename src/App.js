@@ -4,7 +4,6 @@ import Header from "./components/Header/Header";
 import Card from "./components/Card/Card";
 
 const App = () => {
-
   const [deals, setDeals] = useState([]);
 
   const getDeals = () => {
