@@ -1,0 +1,48 @@
+@use "./mixins" as *;
+@use "./fonts" as *;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: FuturaMedium, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 2.25rem;
+
+  @include tablet {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+
+  @include tablet {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+}
+

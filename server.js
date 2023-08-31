@@ -19,7 +19,7 @@ app.get("/deals", (req, res) => {
     domain: "com",
     query: "deals today",
     start_page: 1,
-    pages: 2,
+    pages: 1,
     parse: true,
   };
 

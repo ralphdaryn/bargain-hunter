@@ -38,7 +38,7 @@ const App = () => {
       <div>
         <h2>Top Bargains Today!</h2>
         <button onClick={() => setSortItems(!sortItems)}>
-          {sortItems ? "Sort: Highest to Lowest" : "Sort: Lowest to Highest"}
+          {sortItems ? "Sort Price: Lowest to Highest" : "Sort Price: Highest to Lowest"}
         </button>
         <div className="feed">
           {sortDeals.map((deal) => (
