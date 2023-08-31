@@ -1,12 +1,22 @@
 import "./Card.scss";
+import { FaStar } from "react-icons/fa";
+import { FaCommentDots } from "react-icons/fa";
 
-const Card = ({ item }) => {
+const Card = ({ item, discount }) => {
   const titleFormat = item.title.slice(0, 50);
   const shippingFormat = item.shipping_information.slice(0, 25);
-  console.log(item);
   const renderRating = () => {
-    return item.rating === 0 ? "No ratings available!" : item.rating;
+    return item.rating === 0 ? "Be the first to rate!" : item.rating;
   };
+
+  const renderReviews = () => {
+    return item.reviews_count === 0
+      ? "Be the first to review!"
+      : item.reviews_count;
+  };
+
+  const saveTotal =
+    Math.round((item.price_strikethrough - item.price) * 100) / 100;
 
   return (
     <div className="card">
@@ -14,21 +24,43 @@ const Card = ({ item }) => {
         <img className="card__image" src={item.url_image} alt={item.title} />
       </div>
       <div className="card__container">
-        <h2 className="card__title">
-          <a className="card__link"
-            href={`http://www.amazon.com/${item.url}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {titleFormat}...
-          </a>
-        </h2>
-        <div className="card__wrapper">
-          <p className="card__rating">{renderRating()}</p>
-          <p>|</p>
-          <p className="card__reviews">{item.reviews_count} reviews</p>
+        <div className="card__title-container">
+          <h2 className="card__title">
+            <a
+              className="card__link"
+              href={`http://www.amazon.com/${item.url}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {titleFormat}...
+            </a>
+          </h2>
         </div>
-        <h3 className="card__price">${item.price}</h3>
+        <div className="card__wrapper">
+          <p className="card__rating">
+            {renderRating()}
+            <FaStar className="card__rating-icon" />
+          </p>
+          <p>|</p>
+          <p className="card__reviews">
+            {renderReviews()} reviews{" "}
+            <FaCommentDots className="card__reviews-icon" />
+          </p>
+        </div>
+        <div className="card__price-wrapper">
+          <div>
+            <p className="card__discount">Reg price:</p>
+            <span className="card__discount-strike">
+              ${item.price_strikethrough}
+            </span>
+          </div>
+
+          <p>|</p>
+          <h3 className="card__price">Total ${item.price}</h3>
+          <p>|</p>
+          <p>Total Bargain: ${saveTotal}</p>
+          <div>{discount}% off!</div>
+        </div>
         <p className="card__shipping">{shippingFormat}...</p>
       </div>
     </div>

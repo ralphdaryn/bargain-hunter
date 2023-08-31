@@ -9,16 +9,18 @@ const PORT = process.env.PORT || 5050;
 app.use(cors());
 
 // Authorization
-const username = "bargainhunter";
+const username = "bargainhunter01";
 const password = "BargainHunter06";
 
 // Routes
 app.get("/deals", (req, res) => {
   const body = {
     source: "amazon_search",
+    domain: "com",
     query: "deals today",
+    start_page: 1,
+    pages: 2,
     parse: true,
-    pages: 1,
   };
 
   axios
