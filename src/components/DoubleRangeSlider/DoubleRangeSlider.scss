@@ -1,0 +1,40 @@
+.double-range-slider {
+    &__slider {
+      .rc-slider {
+        height: 6px;
+  
+        &-rail {
+          background-color: #e5e5e5;
+        }
+  
+        &-track {
+          background-color: #007bff;
+        }
+  
+        &-handle {
+          width: 16px;
+          height: 16px;
+          border: 2px solid #007bff;
+          background-color: #fff;
+          margin-top: -5px;
+        }
+  
+        &-handle-1 {
+          border-color: #007bff;
+        }
+  
+        &-handle-2 {
+          border-color: #007bff;
+        }
+      }
+  
+      .rc-slider-mark {
+        top: 8px;
+  
+        &-text {
+          font-size: 12px;
+          color: #666;
+        }
+      }
+    }
+  }

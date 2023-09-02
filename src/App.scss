@@ -1,1 +1,20 @@
-@use './styles/partials/globals' as *;
+@use "./styles/partials/globals" as *;
+
+.app {
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem;
+  }
+
+  &__sort-button {
+    padding: 0.25rem;
+  }
+
+  &__feed {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+}

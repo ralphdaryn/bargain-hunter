@@ -1,10 +1,12 @@
 import "./Card.scss";
 import { FaStar } from "react-icons/fa";
 import { FaCommentDots } from "react-icons/fa";
+import Timer from "../../components/Timer/Timer";
 
 const Card = ({ item, discount }) => {
   const titleFormat = item.title.slice(0, 50);
   const shippingFormat = item.shipping_information.slice(0, 25);
+
   const renderRating = () => {
     return item.rating === 0 ? "Be the first to rate!" : item.rating;
   };
@@ -23,7 +25,7 @@ const Card = ({ item, discount }) => {
       <div className="card__image-container">
         <img className="card__image" src={item.url_image} alt={item.title} />
       </div>
-      <div className="card__container">
+      <div className="card__content">
         <div className="card__title-container">
           <h2 className="card__title">
             <a
@@ -36,34 +38,35 @@ const Card = ({ item, discount }) => {
             </a>
           </h2>
         </div>
-        <div className="card__wrapper">
+        <div className="card__info">
           <p className="card__rating">
             {renderRating()}
             <FaStar className="card__rating-icon" />
           </p>
           <p>|</p>
           <p className="card__reviews">
-            {renderReviews()} reviews{" "}
+            {renderReviews()} reviews
             <FaCommentDots className="card__reviews-icon" />
           </p>
         </div>
-        <div className="card__price-wrapper">
+        <div className="card__price-info">
           <div>
             <p className="card__discount">Reg price:</p>
             <span className="card__discount-strike">
               ${item.price_strikethrough}
             </span>
           </div>
-
           <p>|</p>
           <h3 className="card__price">Total ${item.price}</h3>
           <p>|</p>
           <p>Total Bargain: ${saveTotal}</p>
-          <div>{discount}% off!</div>
+          <div>Save {discount}% off!</div>
         </div>
+        <Timer shippingInfo={shippingFormat} />
         <p className="card__shipping">{shippingFormat}...</p>
       </div>
     </div>
   );
 };
+
 export default Card;
