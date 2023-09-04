@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const Timer = ({ shippingInfo }) => {
   const [timeLeft, setTimeLeft] = useState({});
 
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = useCallback(() => {
     const endDateString = shippingInfo.split("-").pop().trim();
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
@@ -22,7 +22,7 @@ const Timer = ({ shippingInfo }) => {
     };
 
     return timeLeft;
-  };
+  }, [shippingInfo]);
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -33,7 +33,8 @@ const Timer = ({ shippingInfo }) => {
     }, 1000);
 
     return () => clearInterval(timerId);
-  }, [shippingInfo]);
+  }, [calculateTimeLeft]);
+
   if (!timeLeft.days) {
     return <div>Don't miss this bargain!!</div>;
   }

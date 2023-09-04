@@ -14,10 +14,11 @@ const password = "BargainHunter06";
 
 // Routes
 app.get("/deals", (req, res) => {
+  const query = req.query.query || "deals today"; // Added this line to accept query parameter
   const body = {
     source: "amazon_search",
     domain: "com",
-    query: "deals today",
+    query: query, // Modified this line to use the query variable
     start_page: 1,
     pages: 1,
     parse: true,

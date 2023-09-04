@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import "./App.scss";
+import { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header/Header";
 import Card from "./components/Card/Card";
-import DoubleRangeSlider from "./components/DoubleRangeSlider/DoubleRangeSlider";
-import "./App.scss";
+import { SearchContext } from "./components/SearchContext/SearchContext";
 
 const App = () => {
   const [deals, setDeals] = useState([]);
   const [sortItems, setSortItems] = useState(false);
-  // const [priceRange, setPriceRange] = useState([20, 80]);
+  const { query } = useContext(SearchContext);
 
-  const getDeals = () => {
+  const getDeals = (searchQuery) => {
     axios
-      .get("http://localhost:5050/deals")
+      .get(`http://localhost:5050/deals?query=${searchQuery}`)
       .then((response) => {
         setDeals(response.data);
         console.log(response.data);
@@ -24,8 +24,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    getDeals();
-  }, []);
+    getDeals(query);
+  }, [query]);
 
   const sortDeals = sortItems
     ? [...deals].sort((a, b) => a.price - b.price)
@@ -36,17 +36,11 @@ const App = () => {
     return Math.round(discount);
   };
 
-  // const handlePriceRangeChange = (newRange) => {
-  //   setPriceRange(newRange);
-  //   // Perform any filtering based on the new price range here
-  // };
-
   return (
     <Router>
       <div className="app">
         <Header />
         <div className="app__controls">
-          {/* <DoubleRangeSlider/> */}
           <button
             className="app__sort-button"
             onClick={() => setSortItems(!sortItems)}
@@ -55,7 +49,6 @@ const App = () => {
               ? "Sort Price: Lowest to Highest"
               : "Sort Price: Highest to Lowest"}
           </button>
-        
         </div>
         <div className="app__feed">
           {sortDeals.map((deal) => (
