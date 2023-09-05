@@ -1,13 +1,21 @@
 @use "../../styles/partials/mixins" as *;
 
 .search-bar {
-  display: none;
+  display: none; 
+  
+  &.active {
+    display: flex; 
+    flex-direction: row;
+    @include desktop {
+      display: flex;
+      flex-direction: column; 
+    }
+  }
 
   @include desktop {
-    display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin: 3rem 3rem 0 0;
+    margin-right: 3rem;
   }
 
   input {

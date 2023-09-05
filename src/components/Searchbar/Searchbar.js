@@ -3,7 +3,7 @@ import SearchContext from "../../components/SearchContext/SearchContext";
 import { FaSearch } from "react-icons/fa";
 import "./Searchbar.scss";
 
-const SearchBar = () => {
+const SearchBar = ({ active }) => {
   const [localQuery, setLocalQuery] = useState("");
   const { setQuery } = useContext(SearchContext); 
 
@@ -13,12 +13,12 @@ const SearchBar = () => {
   };
 
   return (
-    <form className="search-bar" onSubmit={handleSearch}>
+    <form className={`search-bar ${active ? "active" : ""}`} onSubmit={handleSearch}>
       <input
         type="text"
         value={localQuery}
         onChange={(e) => setLocalQuery(e.target.value)}
-        placeholder="Search for deals..."
+        placeholder="Search for bargains..."
       />
       <button type="submit">
         <FaSearch />

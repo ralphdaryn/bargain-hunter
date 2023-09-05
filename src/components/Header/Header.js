@@ -8,42 +8,46 @@ import SearchBar from "../../components/Searchbar/Searchbar";
 
 const Header = ({ onBestSellerClick, onTopReviewsClick }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <div className="header">
       <div className="header__container">
         <FaBars className="header__menu" onClick={() => setIsOpen(!isOpen)} />
         <img className="header__logo" src={logo} alt="logo pic" />
-        <SearchBar />
-        <FaSearch className="header__search" />
+        <nav className={`header__nav ${isOpen ? "active" : ""}`}>
+          <ul>
+            <li className="header__nav-link">
+              <NavLink to="/deals" className="active">
+                Today's Bargain!
+              </NavLink>
+            </li>
+            <li className="header__nav-link">
+              <NavLink
+                to="/best-seller"
+                className="active"
+                onClick={onBestSellerClick}
+              >
+                Best Seller
+              </NavLink>
+            </li>
+            <li className="header__nav-link">
+              <NavLink
+                to="/review"
+                className="active"
+                onClick={onTopReviewsClick}
+              >
+                Top Reviews
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+        <SearchBar active={isSearchOpen} />
+        <FaSearch
+          className="header__search"
+          onClick={() => setIsSearchOpen(!isSearchOpen)}
+        />
       </div>
-      <nav className={`header__nav ${isOpen ? "active" : ""}`}>
-        <ul>
-          <li className="header__nav-link">
-            <NavLink to="/deals" className="active">
-              Today's Bargain!
-            </NavLink>
-          </li>
-          <li className="header__nav-link">
-            <NavLink
-              to="/best-seller"
-              className="active"
-              onClick={onBestSellerClick}
-            >
-              Best Seller
-            </NavLink>
-          </li>
-          <li className="header__nav-link">
-            <NavLink
-              to="/review"
-              className="active"
-              onClick={onTopReviewsClick}
-            >
-              Top Reviews
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
     </div>
   );
 };

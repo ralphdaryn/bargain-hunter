@@ -57,8 +57,8 @@ const Card = ({ item, discount }) => {
           </div>
           <h3 className="card__price">Total ${item.price}</h3>
           <div>
-            <p>Save ${saveTotal}!</p>
-            <div>{discount}% off!</div>
+          <p>Save</p>
+            <p>${saveTotal} = {discount}% off!</p>
           </div>
         </div>
         <p className="card__shipping">{shippingFormat}...</p>

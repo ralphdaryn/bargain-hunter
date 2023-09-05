@@ -5,8 +5,12 @@
     background-color: #d6dfe8;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     gap: 2rem;
+
+    @include desktop {
+      justify-content: space-around;
+      align-items: center;
+    }
   }
 
   &__logo {
@@ -27,6 +31,7 @@
   &__search {
     margin: 1rem;
     font-size: 1.5rem;
+    cursor: pointer;
 
     @include desktop {
       display: none;
@@ -35,16 +40,22 @@
 
   &__nav {
     display: none;
-    position: absolute;
-    left: 200px;
-    top: 50px;
+    background-color: #d6dfe8;
+    z-index: 1000;
 
     &.active {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
 
       @include desktop {
         flex-direction: row;
+        background-color: #d6dfe8;
+        height: auto;
+        position: static;
+        padding: 0;
       }
     }
 
@@ -55,8 +66,11 @@
 
     ul {
       display: flex;
+      flex-direction: column;
       gap: 1.5rem;
       border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
 
       @include desktop {
         flex-direction: row;
@@ -68,10 +82,35 @@
       font-family: "FuturaHeavy", sans-serif;
       color: #262626;
       text-transform: uppercase;
+      text-align: center;
 
       &:hover {
         color: #c99600;
       }
+    }
+  }
+
+  .search-bar {
+    display: none;
+
+    @include tablet {
+      display: none;
+    }
+
+    @include desktop {
+      display: flex;
+    }
+  }
+
+  .search-bar-active {
+    display: flex;
+
+    @include tablet {
+      display: flex;
+    }
+
+    @include desktop {
+      display: flex;
     }
   }
 }
