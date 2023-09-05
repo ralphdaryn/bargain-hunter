@@ -1,15 +1,15 @@
 import { useState, useContext } from "react";
-import { SearchContext } from "./SearchContext"; // Import the context
+import SearchContext from "../../components/SearchContext/SearchContext";
 import { FaSearch } from "react-icons/fa";
 import "./Searchbar.scss";
 
 const SearchBar = () => {
   const [localQuery, setLocalQuery] = useState("");
-  const { setQuery } = useContext(SearchContext); // Get setQuery function from context
+  const { setQuery } = useContext(SearchContext); 
 
   const handleSearch = (event) => {
     event.preventDefault();
-    setQuery(localQuery); // Update global query state
+    setQuery(localQuery); 
   };
 
   return (

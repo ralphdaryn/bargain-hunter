@@ -1,10 +1,10 @@
 import "./App.scss";
 import { useState, useEffect, useContext } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header/Header";
 import Card from "./components/Card/Card";
-import { SearchContext } from "./components/SearchContext/SearchContext";
+import SearchContext from "./components/SearchContext/SearchContext";
 
 const App = () => {
   const [deals, setDeals] = useState([]);

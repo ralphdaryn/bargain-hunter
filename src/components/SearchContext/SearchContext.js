@@ -1,6 +1,8 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
-export const SearchContext = createContext({
-  query: '',
-  setQuery: () => {}
+const SearchContext = createContext({
+  query: "",
+  setQuery: () => {},
 });
+
+export default SearchContext;

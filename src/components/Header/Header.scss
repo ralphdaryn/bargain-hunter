@@ -7,28 +7,26 @@
     justify-content: space-between;
     align-items: flex-start;
   }
+
   &__logo {
     width: 40%;
     flex: 0 0 auto;
+
     @include tablet {
       width: 30%;
     }
+
     @include desktop {
       width: 9.5%;
       margin-left: 2.5rem;
     }
   }
 
-
-
   &__menu,
   &__search {
     margin: 1rem;
     font-size: 1.5rem;
-  }
 
-  &__menu,
-  &__search {
     @include desktop {
       display: none;
     }
@@ -37,15 +35,14 @@
   &__nav {
     display: none;
     position: absolute;
-    left: 220px;
+    left: 200px;
     top: 50px;
 
     &.active {
       display: flex;
       flex-direction: column;
 
-      @include tablet;
-      desktop {
+      @include desktop {
         flex-direction: row;
       }
     }
@@ -60,16 +57,17 @@
       gap: 1.5rem;
       border-radius: 10px;
 
-      @include tablet;
-      desktop {
+      @include desktop {
         flex-direction: row;
       }
     }
+
     &-link {
       font-size: 2rem;
       font-family: "FuturaHeavy", sans-serif;
       color: #262626;
       text-transform: uppercase;
+
       &:hover {
         color: #e84a4a;
       }

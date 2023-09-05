@@ -19,24 +19,14 @@ const Header = () => {
       </div>
       <nav className={`header__nav ${isOpen ? "active" : ""}`}>
         <ul>
-          <li className="header__nav-link">
-            <NavLink to="/today" activeClassName="active">
+          <li>
+            <NavLink
+              to="/today"
+              className={({ isActive }) =>
+                isActive ? "header__nav-link active" : "header__nav-link"
+              }
+            >
               Today's Bargain!
-            </NavLink>
-          </li>
-          <li className="header__nav-link">
-            <NavLink to="/best-seller" activeClassName="active">
-              Best Seller
-            </NavLink>
-          </li>
-          <li className="header__nav-link">
-            <NavLink to="/review" activeClassName="active">
-              Top Reviews
-            </NavLink>
-          </li>
-          <li className="header__nav-link">
-            <NavLink to="/categories" activeClassName="active">
-              Categories
             </NavLink>
           </li>
         </ul>

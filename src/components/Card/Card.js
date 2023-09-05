@@ -1,11 +1,11 @@
 import "./Card.scss";
 import { FaStar } from "react-icons/fa";
 import { FaCommentDots } from "react-icons/fa";
-import Timer from "../../components/Timer/Timer";
+
 
 const Card = ({ item, discount }) => {
   const titleFormat = item.title.slice(0, 50);
-  const shippingFormat = item.shipping_information.slice(0, 25);
+  const shippingFormat = item.shipping_information.slice(0, 20);
 
   const renderRating = () => {
     return item.rating === 0 ? "Be the first to rate!" : item.rating;
@@ -62,7 +62,6 @@ const Card = ({ item, discount }) => {
           <p>Total Bargain: ${saveTotal}</p>
           <div>Save {discount}% off!</div>
         </div>
-        <Timer shippingInfo={shippingFormat} />
         <p className="card__shipping">{shippingFormat}...</p>
       </div>
     </div>

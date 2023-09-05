@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { SearchContext } from './SearchContext';
+import { useState } from "react";
+import SearchContext from "../../components/SearchContext/SearchContext";
 
 const SearchProvider = ({ children }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   return (
     <SearchContext.Provider value={{ query, setQuery }}>
