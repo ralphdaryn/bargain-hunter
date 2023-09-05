@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import SearchBar from "../../components/Searchbar/Searchbar";
 
-const Header = () => {
+const Header = ({ onBestSellerClick, onTopReviewsClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -19,14 +19,27 @@ const Header = () => {
       </div>
       <nav className={`header__nav ${isOpen ? "active" : ""}`}>
         <ul>
-          <li>
-            <NavLink
-              to="/today"
-              className={({ isActive }) =>
-                isActive ? "header__nav-link active" : "header__nav-link"
-              }
-            >
+          <li className="header__nav-link">
+            <NavLink to="/deals" className="active">
               Today's Bargain!
+            </NavLink>
+          </li>
+          <li className="header__nav-link">
+            <NavLink
+              to="/best-seller"
+              className="active"
+              onClick={onBestSellerClick}
+            >
+              Best Seller
+            </NavLink>
+          </li>
+          <li className="header__nav-link">
+            <NavLink
+              to="/review"
+              className="active"
+              onClick={onTopReviewsClick}
+            >
+              Top Reviews
             </NavLink>
           </li>
         </ul>

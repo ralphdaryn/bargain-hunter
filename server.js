@@ -12,13 +12,13 @@ app.use(cors());
 const username = "bargainhunter01";
 const password = "BargainHunter06";
 
-// Routes
+// Deals Today Route
 app.get("/deals", (req, res) => {
-  const query = req.query.query || "deals today"; 
+  const query = req.query.query || "today's deals";
   const body = {
     source: "amazon_search",
     domain: "com",
-    query: query, 
+    query: query,
     start_page: 1,
     pages: 1,
     parse: true,

@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 2rem;
   }
 
   &__logo {
@@ -69,7 +70,7 @@
       text-transform: uppercase;
 
       &:hover {
-        color: #e84a4a;
+        color: #c99600;
       }
     }
   }
