@@ -1,35 +1,50 @@
 @use "../../styles/partials/mixins" as *;
 
 .search-bar {
-  display: none; 
-  
-  &.active {
-    display: flex; 
-    flex-direction: row;
-    @include desktop {
-      display: flex;
-      flex-direction: column; 
-    }
-  }
+  display: none;
 
-  @include desktop {
+  &.active {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
-    margin-right: 3rem;
+    @include desktop {
+      align-items: center;
+      margin-right: 3rem;
+    }
   }
 
   input {
     padding: 0.75rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 25rem;
+    border-radius: 5px 0 0 5px;
+    border: 2px solid black;
+    width: 100%;
+    transition: border-color 0.3s;
+    @include tablet {
+      width: 80%;
+      
+    }
+    @include desktop {
+      width: calc(25rem - 2.2rem);
+    }
+    &:focus {
+      border-color: black;
+    }
   }
 
   button {
-    background-color: transparent;
-    border: none;
+    background-color: #8227f4;
+    border: 2px solid black;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
-    color: #333;
+    color: white;
     font-size: 1.2rem;
+    padding: 0.75rem;
+    transition: background-color 0.3s;
+    @include tablet {
+      padding: .5rem;
+    }
+    &:hover {
+      background-color: #7523dc;
+    }
   }
 }

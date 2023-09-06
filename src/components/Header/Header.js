@@ -6,7 +6,11 @@ import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import SearchBar from "../../components/Searchbar/Searchbar";
 
-const Header = ({ onBestSellerClick, onTopReviewsClick }) => {
+const Header = ({
+  onBestSellerClick,
+  onTopReviewsClick,
+  onHighestRatedClick,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -18,14 +22,11 @@ const Header = ({ onBestSellerClick, onTopReviewsClick }) => {
         <nav className={`header__nav ${isOpen ? "active" : ""}`}>
           <ul>
             <li className="header__nav-link">
-              <NavLink to="/deals" className="active">
-                Today's Bargain!
-              </NavLink>
-            </li>
-            <li className="header__nav-link">
               <NavLink
                 to="/best-seller"
-                className="active"
+                className={({ isActive }) =>
+                  isActive ? "header__nav-link active" : "header__nav-link"
+                }
                 onClick={onBestSellerClick}
               >
                 Best Seller
@@ -33,8 +34,21 @@ const Header = ({ onBestSellerClick, onTopReviewsClick }) => {
             </li>
             <li className="header__nav-link">
               <NavLink
-                to="/review"
-                className="active"
+                to="/highest-rated"
+                className={({ isActive }) =>
+                  isActive ? "header__nav-link active" : "header__nav-link"
+                }
+                onClick={onHighestRatedClick}
+              >
+                Highest Rated
+              </NavLink>
+            </li>
+            <li className="header__nav-link">
+              <NavLink
+                to="/top-reviews"
+                className={({ isActive }) =>
+                  isActive ? "header__nav-link active" : "header__nav-link"
+                }
                 onClick={onTopReviewsClick}
               >
                 Top Reviews

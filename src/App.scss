@@ -1,46 +1,65 @@
 @use "./styles/partials/globals" as *;
-@use './styles/partials/mixins' as *;
+@use "./styles/partials/mixins" as *;
 
 .app {
   &__controls {
     display: flex;
-    justify-content: flex-end;
-    margin: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem;
+    @include tablet {
+      margin: 1.5rem;
+    }
+    @include desktop {
+      margin: 2.5rem;
+    }
   }
 
-  &__sort-button { 
+  &__title {
+    font-family: "FuturaHeavy";
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    @include tablet {
+      font-size: 2rem;
+    }
+    @include desktop {
+      font-size: 3rem;
+    }
+  }
+
+  &__sort-button {
     width: 100px;
-    height: 20px;
-    background-color: #eeb60c;
-    color: #ffffff; 
-    border: none; 
-    border-radius: 5px; 
-    font-size: 1rem; 
-    cursor: pointer; 
+    height: 25px;
+    background-color: #fbbb00;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    font-family: "FuturaHeavy";
+    text-transform: uppercase;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-   
-  
-  
+
     &:hover {
-      background-color: #d1ab60;
+      background-color: #e2a800;
     }
-  
+
     &:active {
-      transform: scale(0.95); 
+      transform: scale(0.95);
     }
-  
+
     &:focus {
-      outline: none; 
-      box-shadow: 0 0 5px #56595d; 
+      outline: none;
+      box-shadow: 0 0 5px #56595d;
     }
     @include tablet {
-      padding: .35rem;
-      width: 220px;
-      height: 50px;
+      width: 165px;
+      height: 25px;
     }
 
     @include desktop {
-      width: 250px;
+      width: 275px;
+      height: 50px;
     }
   }
 

@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5050;
@@ -9,8 +10,9 @@ const PORT = process.env.PORT || 5050;
 app.use(cors());
 
 // Authorization
-const username = "bargainhunter01";
-const password = "BargainHunter06";
+const username = process.env.SCRAPER_USERNAME;
+const password = process.env.SCRAPER_PASSWORD;
+
 
 // Deals Today Route
 app.get("/deals", (req, res) => {
@@ -46,7 +48,7 @@ app.get("/deals", (req, res) => {
       res.json(sortDeal);
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.response);
       res.status(500).json({ message: "Internal Server Error" });
     });
 });

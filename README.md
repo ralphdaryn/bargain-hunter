@@ -1,23 +1,23 @@
 # Bargain Hunter Web Application
+
 Bargain Hunter is a responsive web application designed to help users discover real time prices of products in amazon to get the best deals, view top rated items and reviews online. With its intuitive user interface, users can navigate through top deals, best sellers, and view the reviews on sorting prices from lowest to highest.
 
-
 ## 📸 Screenshots
-![Mobile View](./src/assets/images/bargain-hunter-mobile.JPG)
-![Tablet View](./src/assets/images/bargain-hunter-tablet.JPG)
-![Desktop View](./src/assets/images/bargain-hunter-desktop.JPG)
 
+![Mobile View](./src/assets/images/bhmobile.JPG)
+![Tablet View](./src/assets/images/bhtablet.JPG)
+![Desktop View](./src/assets/images/bhdesktop.JPG)
 
 ## 📝 Features and/or Usage Instructions
+
 - **Responsive Navigation**: Mobile-optimized navigation that adjusts to the user's device.
 - **Dynamic Search**: A search bar with auto-suggest capabilities, enhancing user experience.
-- **Personalized Routes**: Easily navigate through deals, top reviews, and best-selling products based on the search query paramater.
-- **Sort Prices**: You can sort prices from lowest to highest to get the best deals
-- **Search Bar**: Simply type in your desired product or category and get results.
-- **Profile**: Access real time prices of products in amazon to get the best deals.
-
+- **Personalized Routes**: Easily navigate through deals, top reviews, high rated and best-selling products based on the search query paramater.
+- **Sort Prices**: You can sort prices from lowest to highest and highest to lowest to get the best deals.
+- **Profile**: Access real time prices of products in amazon to get the best deals and highest discount.
 
 ## 🚀 Installation
+
 1. Clone the repo: git clone https://github.com/ralphdaryn/bargain-hunter.git
 2. cd bargain-hunter
 3. npm install
@@ -25,6 +25,7 @@ Bargain Hunter is a responsive web application designed to help users discover r
 5. npm start
 
 ## 🛠️ Tech Stack
+
 - **React**: For dynamic user interface components.
 - **SCSS**: Syntactically Awesome Style Sheets, a CSS preprocessor.
 - **Node Express**: Back-end framework for Node.js.
@@ -35,9 +36,11 @@ Bargain Hunter is a responsive web application designed to help users discover r
 - **Postman**: Provides a user-friendly interface to send requests to web services and view their responses in return.
 
 ## 🌐 API Reference
+
 - **Oxylabs**: E-Commerce Scraper API: https://oxylabs.io/
 
 ## 🧠 Lessons Learned & Next Steps:
+
 Lessons Learned:
 Responsive Design: Designing from mobiles to desktops, is crucial for a universal user experience. The project reinforced the significance of mobile-first design principles.
 

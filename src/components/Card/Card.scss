@@ -80,18 +80,31 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: stretch;
-    margin: 0 -10px;
     text-align: center;
+    gap: 0.5rem;
 
     @include desktop {
       margin: 0 -15px;
     }
   }
 
+  &__price {
+    font-family: "FuturaHeavy";
+    font-size: 2rem;
+    color: #138213;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(132, 231, 132, 0.582);
+    }
+  }
+
   &__price-info {
     display: flex;
     align-items: center;
-    gap:.155rem;
+    gap: 0.155rem;
     justify-content: center;
     text-align: center;
     padding: 0.5rem;
@@ -117,5 +130,28 @@
 
   &__reviews-icon {
     color: #d1ab60;
+  }
+  &__sales {
+    margin: 0.5rem 0;
+    &-icon {
+      color: #d1ab60;
+      margin-right: 0.5rem;
+    }
+  }
+  &__save {
+    background-color: #e84a4a;
+    border-radius: 10px;
+    padding: 0.25rem;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken(#e84a4a, 10%);
+    }
+  }
+  &__shipping {
+    &-icon {
+      color: #42098d;
+    }
   }
 }

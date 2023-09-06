@@ -8,10 +8,11 @@ import SearchContext from "./components/SearchContext/SearchContext";
 
 const App = () => {
   const [deals, setDeals] = useState([]);
-  const [sortItems, setSortItems] = useState(false);
+  const [sortItems, setSortItems] = useState(null);
   const { query } = useContext(SearchContext);
   const [filterBestSeller, setFilterBestSeller] = useState(false);
   const [filterTopReviews, setFilterTopReviews] = useState(false);
+  const [filterHighestRated, setFilterHighestRated] = useState(false);
 
   const getDeals = (searchQuery) => {
     axios
@@ -29,33 +30,45 @@ const App = () => {
     getDeals(query);
   }, [query]);
 
+  const calculateDiscount = (originalPrice, discountPrice) => {
+    const discount = ((originalPrice - discountPrice) / originalPrice) * 100;
+    return Math.round(discount);
+  };
+
   let displayedDeals = [...deals];
 
   if (filterBestSeller) {
     displayedDeals = displayedDeals.filter((deal) => deal.best_seller);
   } else if (filterTopReviews) {
     displayedDeals = displayedDeals
-      .sort((a, b) => b.reviews_count - a.reviews_count)
-      .filter((deal) => deal.reviews_count > 0);
+      .filter((deal) => deal.reviews_count > 100)
+      .sort((a, b) => b.reviews_count - a.reviews_count);
+  } else if (filterHighestRated) {
+    displayedDeals = displayedDeals.sort((a, b) => b.rating - a.rating);
   }
 
-  const sortedDeals = sortItems
-    ? [...displayedDeals].sort((a, b) => b.price - a.price)
-    : [...displayedDeals].sort((a, b) => a.price - b.price);
-
-  const calculateDiscount = (originalPrice, discountPrice) => {
-    const discount = ((originalPrice - discountPrice) / originalPrice) * 100;
-    return Math.round(discount);
-  };
+  if (sortItems === true) {
+    displayedDeals.sort((a, b) => b.price - a.price);
+  } else if (sortItems === false) {
+    displayedDeals.sort((a, b) => a.price - b.price);
+  }
 
   const handleBestSellerClick = () => {
     setFilterBestSeller(true);
     setFilterTopReviews(false);
+    setFilterHighestRated(false);
   };
 
   const handleTopReviewsClick = () => {
     setFilterTopReviews(true);
     setFilterBestSeller(false);
+    setFilterHighestRated(false);
+  };
+
+  const handleHighestRatedClick = () => {
+    setFilterHighestRated(true);
+    setFilterBestSeller(false);
+    setFilterTopReviews(false);
   };
 
   return (
@@ -64,8 +77,10 @@ const App = () => {
         <Header
           onBestSellerClick={handleBestSellerClick}
           onTopReviewsClick={handleTopReviewsClick}
+          onHighestRatedClick={handleHighestRatedClick}
         />
         <div className="app__controls">
+          <h1 className="app__title">Today's Bargain!</h1>
           <button
             className="app__sort-button"
             onClick={() => setSortItems(!sortItems)}
@@ -76,7 +91,7 @@ const App = () => {
           </button>
         </div>
         <div className="app__feed">
-          {sortedDeals.map((deal) => (
+          {displayedDeals.map((deal) => (
             <Card
               key={deal.pos}
               item={deal}

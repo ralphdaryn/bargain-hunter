@@ -1,6 +1,7 @@
 import "./Card.scss";
 import { FaStar } from "react-icons/fa";
 import { FaCommentDots } from "react-icons/fa";
+import { FaShippingFast } from "react-icons/fa";
 
 const Card = ({ item, discount }) => {
   const titleFormat = item.title.slice(0, 50);
@@ -16,8 +17,6 @@ const Card = ({ item, discount }) => {
       ? "Be the first to review!"
       : `${item.reviews_count} reviews`;
   };
-
-  const saveTotal = (item.price_strikethrough - item.price).toFixed(2);
 
   return (
     <div className="card">
@@ -46,7 +45,6 @@ const Card = ({ item, discount }) => {
             {renderReviews()}
             <FaCommentDots className="card__reviews-icon" />
           </p>
-          <p>{item.sales_volume}</p>
         </div>
         <div className="card__price-info">
           <div>
@@ -55,13 +53,18 @@ const Card = ({ item, discount }) => {
               ${item.price_strikethrough}
             </span>
           </div>
-          <h3 className="card__price">Total ${item.price}</h3>
+          <h3 className="card__price">${item.price}</h3>
           <div>
-          <p>Save</p>
-            <p>${saveTotal} = {discount}% off!</p>
+            <p className="card__save">Save {discount}%</p>
           </div>
         </div>
-        <p className="card__shipping">{shippingFormat}...</p>
+        <div>
+          <p className="card__sales">{item.sales_volume} </p>
+        </div>
+        <p className="card__shipping">
+          {shippingFormat}...
+          <FaShippingFast />
+        </p>
       </div>
     </div>
   );
